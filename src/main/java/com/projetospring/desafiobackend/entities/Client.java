@@ -21,7 +21,11 @@ public class Client {
     Long id;
     String nome;
     String cpf;
+
+    @ManyToOne
+    @JoinColumn(name = "car_id")
     Car car;
+
     LocalDate dataNascimento;
 
     @CreationTimestamp
