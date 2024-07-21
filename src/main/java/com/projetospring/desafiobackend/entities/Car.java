@@ -11,7 +11,6 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-@Setter
 @EqualsAndHashCode
 public class Car {
     @Id
@@ -26,4 +25,12 @@ public class Car {
 
     @CreationTimestamp
     LocalDateTime dataCadastro;
+
+    public void setMarca(String marca) {
+        if (marca != null && !marca.isBlank()) this.marca = marca;
+    }
+
+    public void setModelo(String modelo) {
+        if (modelo != null && !modelo.isBlank()) this.modelo = modelo;
+    }
 }
