@@ -18,19 +18,30 @@ public class CarService {
         this.carRepository = carRepository;
     }
 
-    public Car cadastrar(Car carro) {
+    public Car cadastrarCarro(Car carro) {
         return carRepository.save(carro);
     }
 
-    public void excluir(Long id) {
-        carRepository.deleteById(id);
-    }
-
-    public List<Car> listar() {
+    public List<Car> listarCarros() {
         return carRepository.findAll();
     }
 
-    public Optional<Car> listarID(Long id) {
+    public Optional<Car> listarCarrosPeloID(Long id) {
         return carRepository.findById(id);
+    }
+
+    public Car editarCarro(Long id, Car newCar) {
+        Car car = carRepository.findById(id).orElse(null);
+
+        if (car != null) {
+            car.setMarca(newCar.getMarca());
+            car.setModelo(newCar.getModelo());
+            return car;
+        }
+        return null;
+    }
+
+    public void excluirCarro(Long id) {
+        carRepository.deleteById(id);
     }
 }
