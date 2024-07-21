@@ -13,15 +13,11 @@ import java.util.Optional;
 @Service
 public class ClientService {
 
-    private final ClientRepository clientRepository;
-
-    private final CarRepository carRepository;
+    @Autowired
+    private ClientRepository clientRepository;
 
     @Autowired
-    public ClientService(ClientRepository clientRepository, CarRepository carRepository) {
-        this.clientRepository = clientRepository;
-        this.carRepository = carRepository;
-    }
+    private CarRepository carRepository;
 
     public Client cadastrarCliente(Client client) {
         Car clientCar = client.getCar();
@@ -36,7 +32,7 @@ public class ClientService {
         return clientRepository.findAll();
     }
 
-    public Optional<Client> listarClientesPeloID(Long id) {
+    public Optional<Client> listarClientePeloID(Long id) {
         return clientRepository.findById(id);
     }
 

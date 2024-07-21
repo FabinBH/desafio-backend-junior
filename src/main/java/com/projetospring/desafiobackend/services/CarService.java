@@ -11,12 +11,8 @@ import java.util.Optional;
 @Service
 public class CarService {
 
-    private final CarRepository carRepository;
-
     @Autowired
-    public CarService(CarRepository carRepository) {
-        this.carRepository = carRepository;
-    }
+    private CarRepository carRepository;
 
     public Car cadastrarCarro(Car carro) {
         return carRepository.save(carro);
@@ -26,7 +22,7 @@ public class CarService {
         return carRepository.findAll();
     }
 
-    public Optional<Car> listarCarrosPeloID(Long id) {
+    public Optional<Car> listarCarroPeloID(Long id) {
         return carRepository.findById(id);
     }
 
