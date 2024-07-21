@@ -3,6 +3,7 @@ package com.projetospring.desafiobackend.controllers;
 import com.projetospring.desafiobackend.entities.Client;
 import com.projetospring.desafiobackend.services.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,22 +22,25 @@ public class ClientController {
     }
 
     @GetMapping("/{id}")
-    public Optional<Client> listarCliente(@PathVariable Long id) {
-        return clientService.listarClientePeloID(id);
+    public ResponseEntity<Client> listarCliente(@PathVariable Long id) {
+        return clientService.listarClientePeloID(id).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
 
     @PostMapping
-    public Client cadastrarCliente(@RequestBody Client client) {
-        return clientService.cadastrarCliente(client);
+    public ResponseEntity<Client> cadastrarCliente(@RequestBody Client client) {
+        Client newClient = clientService.cadastrarCliente(client);
+        return ResponseEntity.ok(newClient);
     }
 
     @PutMapping("/{id}")
-    public Client editarCliente(@PathVariable Long id, @RequestBody Client client) {
-        return clientService.editarCliente(id, client);
+    public ResponseEntity<Client> editarCliente(@PathVariable Long id, @RequestBody Client client) {
+        Client editClient = clientService.editarCliente(id, client);
+        return ResponseEntity.ok(editClient);
     }
 
     @DeleteMapping("/{id}")
-    public void excluirCliente(@PathVariable Long id) {
+    public ResponseEntity<Void> excluirCliente(@PathVariable Long id) {
         clientService.excluirCliente(id);
+        return ResponseEntity.noContent().build();
     }
 }

@@ -20,12 +20,10 @@ public class ClientService {
     private CarRepository carRepository;
 
     public Client cadastrarCliente(Client client) {
-        Car clientCar = client.getCar();
+        Optional<Car> clientCar = carRepository.findById(client.getCar().getId());
 
-        if (carRepository.existsById(clientCar.getId())) {
-            return clientRepository.save(client);
-        }
-        throw new IllegalArgumentException("Este carro não existe");
+        clientCar.ifPresent(client::setCar);
+        return clientRepository.save(client);
     }
 
     public List<Client> listarClientes() {
