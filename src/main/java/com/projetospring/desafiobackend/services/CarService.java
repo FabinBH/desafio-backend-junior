@@ -32,7 +32,7 @@ public class CarService {
         if (car != null) {
             car.setMarca(newCar.getMarca());
             car.setModelo(newCar.getModelo());
-            return car;
+            return carRepository.save(car);
         }
         return null;
     }
