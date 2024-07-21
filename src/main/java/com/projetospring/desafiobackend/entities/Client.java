@@ -19,13 +19,18 @@ public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
+
+    @Column(length = 50)
     String nome;
+
+    @Column(unique = true, nullable = false)
     String cpf;
 
     @ManyToOne
     @JoinColumn(name = "car_id")
     Car car;
 
+    @Column(nullable = false)
     LocalDate dataNascimento;
 
     @CreationTimestamp

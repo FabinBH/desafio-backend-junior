@@ -17,7 +17,11 @@ public class Car {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
+
+    @Column
     String marca;
+
+    @Column
     String modelo;
 
     @CreationTimestamp
