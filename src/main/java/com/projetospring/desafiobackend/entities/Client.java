@@ -18,24 +18,24 @@ import java.time.LocalDateTime;
 public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    private Long id;
 
     @Column(length = 50)
-    String nome;
+    private String nome;
 
     @Column(unique = true, nullable = false)
-    String cpf;
+    private String cpf;
 
     @ManyToOne
     @JoinColumn(name = "car_id")
-    Car car;
+    private Car car;
 
     @Column(nullable = false)
-    LocalDate dataNascimento;
+    private LocalDate dataNascimento;
 
     @CreationTimestamp
-    LocalDateTime created_at;
+    private LocalDateTime created_at;
 
     @UpdateTimestamp
-    LocalDateTime updated_at;
+    private LocalDateTime updated_at;
 }

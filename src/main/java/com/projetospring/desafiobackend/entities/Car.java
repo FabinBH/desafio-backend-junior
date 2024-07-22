@@ -15,16 +15,16 @@ import java.time.LocalDateTime;
 public class Car {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    private Long id;
 
     @Column(nullable = false)
-    String marca;
+    private String marca;
 
     @Column(nullable = false)
-    String modelo;
+    private String modelo;
 
     @CreationTimestamp
-    LocalDateTime dataCadastro;
+    private LocalDateTime dataCadastro;
 
     public void setMarca(String marca) {
         if (marca != null && !marca.isBlank()) this.marca = marca;
