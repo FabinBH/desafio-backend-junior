@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -15,7 +16,13 @@ public class CarService {
     private CarRepository carRepository;
 
     public Car cadastrarCarro(Car carro) {
-        return carRepository.save(carro);
+        List<Car> cars = carRepository.findAll();
+        if (cars.isEmpty()) return carRepository.save(carro);
+
+        for (Car c : cars) {
+            if (!Objects.equals(c.getModelo(), carro.getModelo()) && !Objects.equals(c.getMarca(), carro.getMarca())) return carRepository.save(carro);
+        }
+        return null;
     }
 
     public List<Car> listarCarros() {
