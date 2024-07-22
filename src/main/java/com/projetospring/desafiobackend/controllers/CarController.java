@@ -28,6 +28,9 @@ public class CarController {
 
     @PostMapping
     public ResponseEntity<Car> cadastro(@RequestBody Car car) {
+        if (car.getMarca() == null || car.getModelo() == null) {
+            return ResponseEntity.badRequest().build();
+        }
         return ResponseEntity.ok(carService.cadastrarCarro(car));
     }
 
