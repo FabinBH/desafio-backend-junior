@@ -20,9 +20,9 @@ public class CarService {
         if (cars.isEmpty()) return carRepository.save(carro);
 
         for (Car c : cars) {
-            if (!Objects.equals(c.getModelo(), carro.getModelo()) && !Objects.equals(c.getMarca(), carro.getMarca())) return carRepository.save(carro);
+            if (Objects.equals(c.getModelo(), carro.getModelo()) && Objects.equals(c.getMarca(), carro.getMarca())) return null;
         }
-        return null;
+        return carRepository.save(carro);
     }
 
     public List<Car> listarCarros() {
