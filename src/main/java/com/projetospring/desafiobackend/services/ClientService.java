@@ -41,7 +41,7 @@ public class ClientService {
             client.setCpf(newClient.getCpf());
             client.setNome(newClient.getNome());
             client.setDataNascimento(newClient.getDataNascimento());
-            if (!carRepository.existsById(newClient.getId())) {
+            if (!carRepository.existsById(newClient.getCar().getId())) {
                 throw new IllegalArgumentException("Carro inexistente");
             }
             client.setCar(newClient.getCar());
