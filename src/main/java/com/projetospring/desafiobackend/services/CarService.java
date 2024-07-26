@@ -35,8 +35,12 @@ public class CarService {
 
     public Car editarCarro(Long id, Car newCar) {
         Car car = carRepository.findById(id).orElse(null);
+        var cars = carRepository.findAll();
 
         if (car != null) {
+            for (Car c : cars) {
+                if (Objects.equals(c.getModelo(), newCar.getModelo()) && Objects.equals(c.getMarca(), newCar.getMarca())) return null;
+            }
             car.setMarca(newCar.getMarca());
             car.setModelo(newCar.getModelo());
             return carRepository.save(car);
